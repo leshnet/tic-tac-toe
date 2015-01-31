@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Storage Example</title>
+    <script type="text/javascript" charset="utf-8" src="js/cordova.js"></script>
+    <!--<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> !-->
+    <link rel="stylesheet" href="jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <script>
+         $(document).ready(function() {
+
+             $('#iniciar').click(function() {
+                 var usuario1 = $('#user1').val();
+                 var usuario2 = $('#user2').val();
+
+                 localStorage.setItem(usuario1,usuario1);
+                 localStorage.setItem(usuario2,usuario2);
+
+                 alert(localStorage.getItem(usuario1));
+                 alert(localStorage.getItem(usuario1));
+             });
+
+             $('#guardar').click(function() {
+
+                  var usuario = $('#usuario').val();
+                  localStorage.setItem('usuario', usuario);
+                  var clave = $('#clave').val();
+                  localStorage.setItem('clave', clave);
+             });
+
+             $('#login').click(function() {
+
+                  var username = localStorage.getItem('usuario') || '<empty>';
+                  $('#user_valid').val(username);
+
+                  if (localStorage.getItem('usuario')== $('#user').val()){
+                      $.mobile.changePage("#paginatres");
+                  }else{
+                      alert('Usuario Incorrecto');
+                  }
+             });
+
+             $('#salir').click(function() {
+                   $.mobile.changePage("#paginauno");
+             });
+         });
+    </script>
+</head>
+<body>
+    <div data-role="page" id="paginauno">
+        <div data-role="header">
+            <h1>Tic Tac Toe</h1>
+        </div>
+        <div data-role="main" class="ui-content">
+             <p>Usuario 1<input type="text" id="user1"></p>
+             <p>Usuario 2<input type="text" id="user2"></p>
+             <button id="iniciar">Iniciar</button>
+             <button id="ranking">Ver Ranking</button>
+       </div>
+
+       <div data-role="footer">
+           <h1></h1>
+       </div>
+   </div>
+
+   <div data-role="page" id="paginados">
+       <div data-role="header">
+           <h1>Crear Usuario</h1>
+       </div>
+
+       <div data-role="main" class="ui-content">
+            <label> Usuario </label>
+            <input type="text" id="usuario" name="usuario">
+
+            <label> Contrase&ntilde;a </label>
+            <input type="password" id="clave" name="clave" >
+
+            <label> Confirmar Contrase&ntilde;a </label>
+            <input type="password" id="reclave" name="reclave" >
+
+            <button id="guardar">Guardar</button>
+            <a href="#paginauno" class="ui-btn ui-btn ui-btn-inline" data-transition="slide">Logearse</a>
+            <!--<p>Usuario <input type="text" id="user"></p>
+            <p>Contrase&ntilde;a <input type="password" id="pass"></p>
+            <p>Confirmar Contrase&ntilde;a <input type="password" id="repass"></p>
+            <a href="#paginauno" class="ui-btn ui-btn-inline" data-transition="slide">Cancelar</a>!-->
+        </div>
+
+        <div data-role="footer">
+            <h1></h1>
+        </div>
+    </div>
+
+    <div data-role="page" id="paginatres">
+        <div data-role="header">
+            <h1>Bienvenido</h1>
+        </div>
+        <div data-role="main" class="ui-content">
+            <p>Usuario Autenticado</p>
+            <button id="salir">Salir</button>
+        </div>
+
+        <div data-role="footer">
+            <h1></h1>
+        </div>
+    </div>
+
+</body>
+</html>
